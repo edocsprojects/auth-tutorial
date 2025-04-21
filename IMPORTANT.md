@@ -50,10 +50,6 @@ with code ->
 
 
 
-
-
-
-
-
+login has a verfication box unutlized curerntly
     
 
