@@ -6,3 +6,7 @@ export function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
 }
+
+export function confirmClient(code: string | null): boolean {
+  return code?.length === 36;
+}

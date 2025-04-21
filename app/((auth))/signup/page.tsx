@@ -13,8 +13,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
 export default function SignupPage() {
+  async function signUpWithGoogle() {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    if (error) console.error("Google sign-up error:", error.message);
+  }
+
   return (
     <div className={cn("flex min-h-screen items-center justify-center px-4")}>
       <Card className="w-full max-w-sm">
@@ -43,10 +55,22 @@ export default function SignupPage() {
               <Input id="password" name="password" type="password" required />
             </div>
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full cursor-pointer">
               Sign Up
             </Button>
           </form>
+
+          <div className="my-4 text-center text-sm text-muted-foreground">
+            OR
+          </div>
+
+          <Button
+            onClick={signUpWithGoogle}
+            className="w-full cursor-pointer"
+            variant="outline"
+          >
+            Continue with Google
+          </Button>
 
           <div className="py-4 text-center text-sm text-muted-foreground">
             Already have an account?{" "}

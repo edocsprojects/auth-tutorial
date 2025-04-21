@@ -45,10 +45,6 @@ login page should forward you to workspace
 
 
 
-
-
-
-
-
+login has a verfication box unutlized curerntly
     
 
